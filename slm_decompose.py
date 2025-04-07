@@ -7,7 +7,6 @@ import copy
 import json
 
 parser = argparse.ArgumentParser("")
-parser.add_argument("--llm_model", type=str, default="gpt-4o")
 parser.add_argument("--tokenizer", type=str, default="meta-llama/Llama-3.1-8B-Instruct")
 parser.add_argument("--model_path", type=str, default="models/llama-3.1-8b-instruct")
 parser.add_argument("--expname", type=str, default="")
@@ -32,7 +31,7 @@ llm = LLM(
     trust_remote_code=True
 )
 
-datasets = ["bamboogle", "2wikimultihopqa", "hotpotqa", "musique"]
+datasets = ["bamboogle", "2wikimultihopqa", "hotpotqa", "musique", "strategyqa"]
 model_name = args.expname
 
 prompt = """Please break down the given question into multiple specific sub-questions that address individual components of the original question.
