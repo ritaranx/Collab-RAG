@@ -28,13 +28,6 @@ AZURE_API_BASE_GPT4O_MINI = os.getenv("AZURE_API_BASE_GPT4O_MINI", "https://your
 AZURE_API_KEY_GPT4O = os.getenv("AZURE_API_KEY_GPT4O", "your-gpt4o-key")
 AZURE_API_KEY_GPT4O_MINI = os.getenv("AZURE_API_KEY_GPT4O_MINI", "your-gpt4o-mini-key")
 ENGINE_NAME = "your-engine-name"
-# ------------------------
-# Utility functions
-# ------------------------
-def prRed(s): print("\033[91m {}\033[00m".format(s))
-def prPurple(s): print("\033[95m {}\033[00m".format(s))
-def prYellow(s): print("\033[93m {}\033[00m".format(s))
-def prLightPurple(s): print("\033[94m {}\033[00m".format(s))
 
 # ------------------------
 # LLM API Wrapper
