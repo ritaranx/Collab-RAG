@@ -71,7 +71,7 @@ for dataset in datasets:
     prompts = []
     contexts = []
 
-    with open(f"./processed_data/{dataset}/test_subsampled.jsonl", "r") as f:
+    with open(f"./processed_data/{dataset}/test.jsonl", "r") as f:
         for line in f:
             example = json.loads(line)
             question = example["question_text"]
@@ -82,8 +82,6 @@ for dataset in datasets:
             contexts.append(item)
 
     print(dataset, len(prompts), len(contexts))
-    print(prompts[-4])
-
     examples = []
     output_dir = f"test/{dataset}/prompts_decompose_test_t{args.temperature}_{model_name}"
     os.makedirs(output_dir, exist_ok=True)
