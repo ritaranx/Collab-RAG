@@ -47,7 +47,7 @@ Please directly add the following files into the llama factory repo:
 - **dataset_info.json**
 - **llama3_{sft,dpo}.yaml**
 
-The processed data will be available shortly -- stay tuned!
+See the `configs` folder for details. The processed data will be available shortly -- stay tuned!
 
 
 
