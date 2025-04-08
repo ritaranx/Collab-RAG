@@ -1,0 +1,39 @@
+{
+  "identity": {
+    "file_name": "identity.json"
+  },
+  "alpaca_en_demo": {
+    "file_name": "alpaca_en_demo.json"
+  },
+  "alpaca_zh_demo": {
+    "file_name": "alpaca_zh_demo.json"
+  },
+  "2wiki_3b_sft_r1": {
+    "file_name": "2wikimultihopqa/2wikimultihopqa_qwen-2.5-3b_sft_r1.json",
+    "formatting": "sharegpt"
+  },
+  "2wiki_3b_dpo_r1": {
+    "file_name": "2wikimultihopqa/2wikimultihopqa_qwen-2.5-3b_dpo_r1.json",
+    "ranking": true,
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "2wiki_8b_sft_r1": {
+    "file_name": "2wikimultihopqa/2wikimultihopqa_llama-3.1-8b_sft_r1.json",
+    "formatting": "sharegpt"
+  },
+  "2wiki_8b_dpo_r1": {
+    "file_name": "2wikimultihopqa/2wikimultihopqa_llama-3.1-8b_dpo_r1.json",
+    "ranking": true,
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  }
+}
