@@ -23,7 +23,8 @@ CUDA_VISIBLE_DEVICES=0,1 python slm_decompose.py \
 --tokenizer meta-llama/Llama-3.1-8B-Instruct \
 --temperature 1.0 \
 --tensor_parallel_size 2 \
---expname [Your Experiment Name]
+--expname [Your Experiment Name] \
+--save_dir test
 ```
 After this step, the decomposed question will be saved at 
 `f"test/{dataset}/prompts_decompose_test_t{args.temperature}_{model_name}/generate.jsonl`
@@ -33,11 +34,24 @@ Please use the command for using SLM for break down questions:
 ```
 CUDA_VISIBLE_DEVICES=0 python llm_reader.py \
 --llm_model gpt-4o-mini \
-
+--expname [Your Experiment Name] \
+--temperature 1.0 \
+--save_dir test
 ```
 
-## Using Llama Factory for Finetuning
+The final answer will be saved in `{args.save_dir}/output/{args.dataset}/f"prompts_{args.llm_model}-{args.expname}.jsonl`.
 
+## Using Llama Factory for Finetuning
+Please directly add the following files into the llama factory repo:
+
+- **dataset_info.json**
+- **llama3_{sft,dpo}.yaml**
+
+The processed data will be available shortly -- stay tuned!
+
+
+
+  
 ## Citation
 If you find this repository helpful, please kindly consider citing the corresponding paper. Thanks!
 ```
