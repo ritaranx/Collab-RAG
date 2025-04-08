@@ -28,6 +28,13 @@ AZURE_API_BASE_GPT4O_MINI = os.getenv("AZURE_API_BASE_GPT4O_MINI", "https://your
 AZURE_API_KEY_GPT4O = os.getenv("AZURE_API_KEY_GPT4O", "your-gpt4o-key")
 AZURE_API_KEY_GPT4O_MINI = os.getenv("AZURE_API_KEY_GPT4O_MINI", "your-gpt4o-mini-key")
 ENGINE_NAME = "your-engine-name"
+# ------------------------
+# Utility functions
+# ------------------------
+def prRed(s): print("\033[91m {}\033[00m".format(s))
+def prPurple(s): print("\033[95m {}\033[00m".format(s))
+def prYellow(s): print("\033[93m {}\033[00m".format(s))
+def prLightPurple(s): print("\033[94m {}\033[00m".format(s))
 
 # ------------------------
 # LLM API Wrapper
@@ -190,7 +197,8 @@ if __name__ == "__main__":
     parser.add_argument("--decompose_llm", type=str, default="gpt-4o-mini")
     parser.add_argument("--dataset", type=str, default="hotpotqa")
     parser.add_argument("--expname", type=str, default="")
-    parser.add_argument("--save_dir", type=str, default="./output")
+    parser.add_argument("--temperature", type=float, default=0.1)
+    parser.add_argument("--save_dir", type=str, default="test")
     args = parser.parse_args()
 
     sentence_embedding_model = "facebook/dragon-plus-query-encoder"
@@ -198,7 +206,7 @@ if __name__ == "__main__":
     embedding_model = AutoModel.from_pretrained(sentence_embedding_model, cache_dir=HF_CACHE_DIR, trust_remote_code=True).cuda()
     embedding_model.eval()
 
-    questions_path = os.path.join(args.save_dir, args.dataset, f"prompts_decompose_{args.decompose_llm}-{args.expname}.jsonl")
+    questions_path = os.path.join(args.save_dir, args.dataset, f"prompts_decompose_test_t{args.temperature}_{args.expname}/generate.jsonl")
     with open(questions_path, "r") as f:
         questions = [json.loads(line) for line in f]
 
@@ -217,7 +225,7 @@ if __name__ == "__main__":
             print(f"Error for item {idx}: {e}")
 
     if saved:
-        out_path = os.path.join(args.save_dir, "output", args.dataset, f"prompts_decompose_plain_{args.decompose_llm}-{args.expname}.jsonl")
+        out_path = os.path.join(args.save_dir, "output", args.dataset, f"prompts_{args.decompose_llm}-{args.llm_model}-{args.expname}.jsonl")
         with open(out_path, "w") as f:
             for ex in saved:
                 f.write(json.dumps(ex) + '\n')
