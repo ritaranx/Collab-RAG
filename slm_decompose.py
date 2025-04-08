@@ -13,6 +13,7 @@ parser.add_argument("--expname", type=str, default="")
 parser.add_argument("--temperature", type=float, default=0.0)
 parser.add_argument("--top_p", type=float, default=0.99)
 parser.add_argument("--tensor_parallel_size", type=int, default=1)
+parser.add_argument("--save_dir", type=str, default="test")
 args = parser.parse_args()
 
 tokenizer = AutoTokenizer.from_pretrained(args.tokenizer)
@@ -82,7 +83,7 @@ for dataset in datasets:
 
     print(dataset, len(prompts), len(contexts))
     examples = []
-    output_dir = f"test/{dataset}/prompts_decompose_test_t{args.temperature}_{model_name}"
+    output_dir = f"{args.save_dir}/{dataset}/prompts_decompose_test_t{args.temperature}_{model_name}"
     os.makedirs(output_dir, exist_ok=True)
 
     for i in trange(len(prompts)):
