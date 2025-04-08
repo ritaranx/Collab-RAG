@@ -194,7 +194,6 @@ def replace_placeholders(text: str, answers_so_far: Dict[str, str]) -> str:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--llm_model", type=str, default="gpt-4o")
-    parser.add_argument("--decompose_llm", type=str, default="gpt-4o-mini")
     parser.add_argument("--dataset", type=str, default="hotpotqa")
     parser.add_argument("--expname", type=str, default="")
     parser.add_argument("--temperature", type=float, default=0.1)
@@ -225,7 +224,7 @@ if __name__ == "__main__":
             print(f"Error for item {idx}: {e}")
 
     if saved:
-        out_path = os.path.join(args.save_dir, "output", args.dataset, f"prompts_{args.decompose_llm}-{args.llm_model}-{args.expname}.jsonl")
+        out_path = os.path.join(args.save_dir, "output", args.dataset, f"prompts_{args.llm_model}-{args.expname}.jsonl")
         with open(out_path, "w") as f:
             for ex in saved:
                 f.write(json.dumps(ex) + '\n')
